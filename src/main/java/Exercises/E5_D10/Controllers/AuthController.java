@@ -20,8 +20,6 @@ import java.io.IOException;
 public class AuthController {
     @Autowired
     private AuthService authService;
-    @Autowired
-    private UsersService usersService;
 
     @PostMapping("/login")
     public UserLoginSuccessDTO login(@RequestBody UserLoginDTO body){
@@ -36,7 +34,7 @@ public class AuthController {
             throw new BadRequestException(validation.getAllErrors());
         } else {
             try {
-                return usersService.save(body);
+                return authService.registerUser(body);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

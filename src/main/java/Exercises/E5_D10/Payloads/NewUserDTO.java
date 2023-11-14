@@ -12,6 +12,8 @@ public record NewUserDTO(
         @NotEmpty(message = "surname is required")
         @Size(min = 2, max=50, message = "surname must have a length beetween 2 and 50")
         String surname,
+        @NotEmpty(message = "La password è un campo obbligatorio!")
+        String password,
         @NotEmpty(message = "email is required")
         @Email(message = "this email is not valid")
         String email) {}

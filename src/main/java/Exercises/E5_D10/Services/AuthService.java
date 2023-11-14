@@ -33,7 +33,7 @@ public class AuthService {
         User user = usersService.findByEmail(body.email());
 
         // 2. In caso affermativo, verifichiamo se la password corrisponde a quella trovata nel db
-        if(body.password().equals(user.getPassword())) {
+        if(bcrypt.matches(body.password(),user.getPassword())) {
             // 3. Se le credenziali sono OK --> Genero un JWT e lo restituisco
             return jwtTools.createToken(user);
         } else {
